@@ -46,9 +46,15 @@ prompt.get([`path`,'filename'], function (err, result) {
     const spanned = letterfy.join('\n');
     const plain = letterfy.join('');
 
-    const newFilePath = parentDir + '/' + 'output_' + result.filename
+    const outputDir = parentDir + 'output'
 
-    fs.writeFile(newFilePath,spanned, err => {
+    if (!fs.existsSync(outputDir)){
+        fs.mkdirSync(outputDir);
+    }
+    
+    const newFilePath = outputDir + '/' +'o_' + result.filename;
+
+    fs.writeFile(newFilePath, hashi + '\n\n' + spanned, err => {
         if (err) {
           console.error(err);
         }

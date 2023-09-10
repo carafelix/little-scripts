@@ -29,25 +29,24 @@ prompt.get([`path`,'filename'], function (err, result) {
         return Number(`0x${v}`)
     });
 
-    console.log(splitted)
-
-
     const letterfy = splitted.map((v,i)=>{
         if((i+1)%2 === 0){
             return String.fromCharCode(122-v)
         } else return String.fromCharCode(v+97)
     });
 
-
-
     const spanned = letterfy.join('\n');
     const plain = letterfy.join('');
+    
+    const outputDir = parentDir + 'output'
 
-    console.log(plain)
+    if (!fs.existsSync(outputDir)){
+        fs.mkdirSync(outputDir);
+    }
+    
+    const newFilePath = outputDir + '/' +'o_' + result.filename;
 
-    const newFilePath = parentDir + '/' + 'output_' + result.filename
-
-    fs.writeFile(newFilePath,spanned, err => {
+    fs.writeFile(newFilePath,hashi + '\n\n' + spanned, err => {
         if (err) {
           console.error(err);
         }
