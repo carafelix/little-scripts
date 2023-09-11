@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "nilsimsa": "^0.2.7",
+    "prompt": "^1.3.0"
+  }
+}
